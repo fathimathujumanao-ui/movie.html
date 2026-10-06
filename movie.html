@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Movie Mystery</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: white;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        .question {
+            display: none;
+            background: #1e1e1e;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 25px;
+        }
+
+        /* First question is visible */
+
+        #question1 {
+            display: block;
+        }
+
+        .movie-image {
+            width: 100%;
+            max-width: 450px;
+            max-height: 550px;
+            object-fit: contain;
+            border-radius: 12px;
+            margin: 15px auto;
+        }
+
+        input {
+            width: 90%;
+            max-width: 400px;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto 0;
+            padding: 13px 30px;
+            border: none;
+            border-radius: 8px;
+            background: #e63946;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #ff5360;
+        }
+
+        .message {
+            margin-top: 18px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* Final section */
+
+        #success {
+            display: none;
+            background: #1e1e1e;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 25px;
+        }
+
+        #success h2 {
+            color: #4ade80;
+        }
+
+        .secret-code {
+            background: black;
+            padding: 18px;
+            border-radius: 10px;
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 4px;
+            margin: 20px auto;
+            max-width: 400px;
+        }
+
+        .next-image {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 12px;
+            margin-top: 15px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <h1>🎬 Movie Mystery</h1>
+
+    <p>
+        Identify the movie to unlock the next image.
+    </p>
+
+
+    <!-- ================================= -->
+    <!-- QUESTION 1 -->
+    <!-- ================================= -->
+
+    <div class="question" id="question1">
+
+        <h2>Image 1</h2>
+
+        <img
+            src="movie1.png"
+            class="movie-image"
+            alt="Movie 1"
+        >
+
+        <p>
+            Which movie is this from?
+        </p>
+
+        <input
+            type="text"
+            id="answer1"
+            placeholder="Enter movie name"
+        >
+
+        <button onclick="checkAnswer1()">
+            Submit
+        </button>
+
+        <div
+            class="message"
+            id="message1">
+        </div>
+
+    </div>
+
+
+
+    <!-- ================================= -->
+    <!-- QUESTION 2 -->
+    <!-- ================================= -->
+
+    <div class="question" id="question2">
+
+        <h2>Image 2</h2>
+
+        <img
+            src="avesham.png"
+            class="movie-image"
+            alt="Movie 2"
+        >
+
+        <p>
+            Which movie is this from?
+        </p>
+
+        <input
+            type="text"
+            id="answer2"
+            placeholder="Enter movie name"
+        >
+
+        <button onclick="checkAnswer2()">
+            Submit
+        </button>
+
+        <div
+            class="message"
+            id="message2">
+        </div>
+
+    </div>
+
+
+
+    <!-- ================================= -->
+    <!-- QUESTION 3 -->
+    <!-- ================================= -->
+
+    <div class="question" id="question3">
+
+        <h2>Image 3</h2>
+
+        <img
+            src="vadakan selfie.png"
+            class="movie-image"
+            alt="Movie 3"
+        >
+
+        <p>
+            Which movie is this from?
+        </p>
+
+        <input
+            type="text"
+            id="answer3"
+            placeholder="Enter movie name"
+        >
+
+        <button onclick="checkAnswer3()">
+            Submit
+        </button>
+
+        <div
+            class="message"
+            id="message3">
+        </div>
+
+    </div>
+
+
+
+    <!-- ================================= -->
+    <!-- SUCCESS -->
+    <!-- ================================= -->
+
+    <div id="success">
+
+        <h2>🎉 Congratulations!</h2>
+
+        <p>
+            You completed all three movie puzzles.
+        </p>
+
+        <p>
+            Your secret code is:
+        </p>
+
+        <div class="secret-code">
+            MOVIE26
+        </div>
+
+        <h2>📍 NEXT PLACE</h2>
+
+        <p>
+            Go to the location shown below.
+        </p>
+
+        <img
+            src="next-place.jpg"
+            class="next-image"
+            alt="Next Place"
+        >
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+
+/* =========================================
+   ANSWERS
+   ========================================= */
+
+const correctAnswer1 = "bethlehem kudumba unit";
+
+const correctAnswer2 = "avesham";
+
+const correctAnswer3 = "Oru vadakkan selfie";
+
+
+
+/* =========================================
+   QUESTION 1
+   ========================================= */
+
+function checkAnswer1() {
+
+    let answer = document
+        .getElementById("answer1")
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    if (answer === correctAnswer1) {
+
+        // Correct
+
+        document.getElementById("message1").innerHTML =
+            "✅ Correct!";
+
+        document.getElementById("message1").style.color =
+            "#4ade80";
+
+
+        // Hide question 1
+
+        document.getElementById("question1").style.display =
+            "none";
+
+
+        // Show question 2
+
+        document.getElementById("question2").style.display =
+            "block";
+
+    }
+
+    else {
+
+        // Wrong
+
+        document.getElementById("message1").innerHTML =
+            "❌ Wrong answer. Try again!";
+
+        document.getElementById("message1").style.color =
+            "#ff4d4d";
+
+    }
+
+}
+
+
+
+/* =========================================
+   QUESTION 2
+   ========================================= */
+
+function checkAnswer2() {
+
+    let answer = document
+        .getElementById("answer2")
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    if (answer === correctAnswer2) {
+
+        document.getElementById("message2").innerHTML =
+            "✅ Correct!";
+
+        document.getElementById("message2").style.color =
+            "#4ade80";
+
+
+        // Hide question 2
+
+        document.getElementById("question2").style.display =
+            "none";
+
+
+        // Show question 3
+
+        document.getElementById("question3").style.display =
+            "block";
+
+    }
+
+    else {
+
+        document.getElementById("message2").innerHTML =
+            "❌ Wrong answer. Try again!";
+
+        document.getElementById("message2").style.color =
+            "#ff4d4d";
+
+    }
+
+}
+
+
+
+/* =========================================
+   QUESTION 3
+   ========================================= */
+
+function checkAnswer3() {
+
+    let answer = document
+        .getElementById("answer3")
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    if (answer === correctAnswer3) {
+
+        document.getElementById("message3").innerHTML =
+            "✅ Correct!";
+
+        document.getElementById("message3").style.color =
+            "#4ade80";
+
+
+        // Hide question 3
+
+        document.getElementById("question3").style.display =
+            "none";
+
+
+        // Show final section
+
+        document.getElementById("success").style.display =
+            "block";
+
+    }
+
+    else {
+
+        document.getElementById("message3").innerHTML =
+            "❌ Wrong answer. Try again!";
+
+        document.getElementById("message3").style.color =
+            "#ff4d4d";
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>
